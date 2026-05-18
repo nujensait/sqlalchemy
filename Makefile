@@ -1,4 +1,4 @@
-.PHONY: help lint lint-fix format check test clean install
+.PHONY: help lint lint-fix format check test clean install hw1
 
 help:
 	@echo "Доступные команды:"

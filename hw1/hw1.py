@@ -21,7 +21,7 @@ def create_database():
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    cursor.execute('''
+    cursor.execute("""
         CREATE TABLE books (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT NOT NULL,
@@ -32,7 +32,7 @@ def create_database():
             genre TEXT,
             available INTEGER DEFAULT 1
         )
-    ''')
+    """)
 
     conn.commit()
     print("✓ Таблица 'books' успешно создана")
@@ -148,10 +148,10 @@ def fill_data(db_path):
     cursor = conn.cursor()
 
     cursor.executemany(
-        '''
+        """
         INSERT INTO books (title, author, year, isbn, pages, genre, available)
         VALUES (?, ?, ?, ?, ?, ?, ?)
-    ''',
+    """,
         books,
     )
 
@@ -178,7 +178,8 @@ def task_3_simple_selects(db_path):
     for row in cursor.fetchall():
         status = 'доступна' if row[7] == 1 else 'выдана'
         print(
-            f'ID: {row[0]}, {row[1]}, {row[2]}, {row[3]} г., {row[6]}, {row[4]} стр., {status}'
+            f'ID: {row[0]}, {row[1]}, {row[2]}, {row[3]} г., '
+            f'{row[6]}, {row[4]} стр., {status}'
         )
 
     print()
@@ -206,7 +207,8 @@ def task_4_where_filters(db_path):
     print()
     print('--- Книги Льва Толстого ---')
     cursor.execute(
-        "SELECT title, year, pages, available FROM books WHERE author = 'Лев Толстой'"
+        "SELECT title, year, pages, available FROM books "
+        "WHERE author = 'Лев Толстой'"
     )
     for row in cursor.fetchall():
         status = 'доступна' if row[3] == 1 else 'выдана'
@@ -229,7 +231,8 @@ def task_4_where_filters(db_path):
     print()
     print('--- Романы с количеством страниц > 400 ---')
     cursor.execute(
-        "SELECT title, author, pages FROM books WHERE genre = 'Роман' AND pages > 400"
+        "SELECT title, author, pages FROM books "
+        "WHERE genre = 'Роман' AND pages > 400"
     )
     for row in cursor.fetchall():
         print(f'«{row[0]}» — {row[1]}, {row[2]} стр.')
@@ -237,7 +240,10 @@ def task_4_where_filters(db_path):
     print()
     print('--- Книги Булгакова или Достоевского ---')
     cursor.execute(
-        "SELECT author, title, year FROM books WHERE author = 'Михаил Булгаков' OR author = 'Федор Достоевский' ORDER BY author, year"
+        "SELECT author, title, year FROM books "
+        "WHERE author = 'Михаил Булгаков' "
+        "OR author = 'Федор Достоевский' "
+        "ORDER BY author, year"
     )
     for row in cursor.fetchall():
         print(f'{row[0]}: «{row[1]}» ({row[2]})')
