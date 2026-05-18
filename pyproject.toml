@@ -7,6 +7,11 @@ dependencies = [
     "pylint>=4.0.5",
 ]
 
+[dependency-groups]
+dev = [
+    "ruff>=0.4.0",
+]
+
 [tool.ruff]
 line-length = 79
 preview = true
