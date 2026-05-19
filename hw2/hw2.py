@@ -53,7 +53,7 @@ def compare_results(
 
     differences = []
     for i, (my_line, expected_line) in enumerate(
-        zip(my_lines, expected_lines)
+        zip(my_lines, expected_lines, strict=True)
     ):
         if my_line != expected_line:
             differences.append(
@@ -66,7 +66,9 @@ def compare_results(
         for diff in differences:
             print(diff)
 
-        assert False, f'Найдено {len(differences)} различий с эталоном'
+        raise AssertionError(
+            f'Найдено {len(differences)} различий с эталоном'
+        )
     else:
         print('✅ ВСЕ ПРОВЕРКИ ПРОЙДЕНЫ!')
         return True
@@ -202,7 +204,9 @@ def insert_books(engine, books):
         conn.execute(books.delete())
         conn.commit()
 
-        result = conn.execute(books.insert().returning(books.c.id), books_data)
+        result = conn.execute(
+            books.insert().returning(books.c.id), books_data
+        )
         book_ids = [row[0] for row in result]
         conn.commit()
 
@@ -277,12 +281,12 @@ def execute_queries(engine, books, users):
                 users.c.fullname,
                 books.c.title,
                 books.c.author,
-            ).select_from(users.join(books, users.c.book_id == books.c.id))
+            ).select_from(
+                users.join(books, users.c.book_id == books.c.id)
+            )
         )
         for row in result:
-            results.append(
-                f"{row[0]}: ({row[1]}) -> '{row[2]}' - {row[3]}"
-            )
+            results.append(f"{row[0]}: ({row[1]}) -> '{row[2]}' - {row[3]}")
 
 
 def main():
