@@ -3,3 +3,8 @@
 *.db
 uv.lock
 doc
+
+# temp files
+hw3/my_result.txt
+hw3/result.txt
+hw3/bookstore.db

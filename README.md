@@ -17,7 +17,7 @@
 
 - ``27.04`` [Введение в базы данных и SQLAlchemy](hw1/README.md)
 - ``30.04`` Устройство SQLAlchemy, работа с таблицами
-- ``04.05`` Запросы в SQLAlchemy
+- ``04.05`` [Запросы в SQLAlchemy](hw3/README.md)
 - ``07.05`` Введение в ORM
 - ``14.05`` Работа с объектами в ORM
 - ``18.05`` Оптимизация запросов
@@ -59,6 +59,9 @@ make clean
 
 # Запустить домашнее задание 1
 make hw1
+
+# Запустить домашнее задание 3
+make hw3
 ```
 
 **Примеры использования:**
@@ -68,11 +71,13 @@ make hw1
 wsl make install
 wsl make lint-fix
 wsl make hw1
+wsl make hw3
 
 # В консоли Linux/MacOS: 
 make install
 make lint-fix
 make hw1
+make hw3
 ```
 
 -------------

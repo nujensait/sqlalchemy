@@ -1,4 +1,4 @@
-.PHONY: help lint lint-fix format check test clean install hw1
+.PHONY: help lint lint-fix format check test clean install hw1 hw3
 
 help:
 	@echo "Доступные команды:"
@@ -11,6 +11,7 @@ help:
 	@echo "  make test       - запустить тесты"
 	@echo "  make clean      - удалить временные файлы и кэш"
 	@echo "  make hw1        - запустить домашнее задание 1"
+	@echo "  make hw3        - запустить домашнее задание 3"
 
 install:
 	@echo "Установка зависимостей..."
@@ -49,3 +50,7 @@ clean:
 hw1:
 	@echo "Запуск домашнего задания 1..."
 	uv run python hw1/hw1.py
+
+hw3:
+	@echo "Запуск домашнего задания 3..."
+	cd hw3 && uv run python hw3.py
