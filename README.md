@@ -16,7 +16,7 @@
 ## Содержание (список уроков)
 
 - ``27.04`` [Введение в базы данных и SQLAlchemy](hw1/README.md)
-- ``30.04`` Устройство SQLAlchemy, работа с таблицами
+- ``30.04`` [Устройство SQLAlchemy, работа с таблицами](hw2/README.md)
 - ``04.05`` Запросы в SQLAlchemy
 - ``07.05`` Введение в ORM
 - ``14.05`` Работа с объектами в ORM
@@ -59,6 +59,9 @@ make clean
 
 # Запустить домашнее задание 1
 make hw1
+
+# Запустить домашнее задание 2
+make hw2
 ```
 
 **Примеры использования:**
@@ -68,11 +71,13 @@ make hw1
 wsl make install
 wsl make lint-fix
 wsl make hw1
+wsl make hw2
 
 # В консоли Linux/MacOS: 
 make install
 make lint-fix
 make hw1
+make hw2
 ```
 
 -------------

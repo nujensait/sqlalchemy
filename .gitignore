@@ -1,5 +1,10 @@
+# system files
 .venv
 .idea
 *.db
 uv.lock
 doc
+
+# temp files
+hw2/my_result.txt
+hw2/result.txt
