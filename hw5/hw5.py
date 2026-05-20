@@ -6,7 +6,6 @@ from sqlalchemy import (
     ForeignKey,
     String,
     create_engine,
-    delete,
     func,
     or_,
     select,
