@@ -13,10 +13,26 @@ from sqlalchemy.orm import (
 
 
 class Base(DeclarativeBase):
+    """Базовый класс для всех моделей ORM."""
+
     pass
 
 
 class Book(Base):
+    """Модель книги в библиотеке.
+
+    Attributes:
+        id (int): Уникальный идентификатор книги
+        title (str): Название книги
+        author (str): Автор книги
+        year (int | None): Год издания
+        isbn (str | None): ISBN книги (уникальный)
+        pages (int): Количество страниц (по умолчанию 0)
+        genre (str | None): Жанр книги
+        available (int): Доступность книги (1 - доступна, 0 - выдана)
+        users (list[User]): Список пользователей, взявших эту книгу
+    """
+
     __tablename__ = 'books'
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
@@ -31,6 +47,11 @@ class Book(Base):
     users: Mapped[list['User']] = relationship(back_populates='book')
 
     def __repr__(self) -> str:
+        """Возвращает строковое представление объекта книги.
+
+        Returns:
+            str: Строка с полной информацией о книге
+        """
         return (
             f"Book(id={self.id}, title='{self.title}', "
             f"author='{self.author}', year={self.year}, "
@@ -40,6 +61,16 @@ class Book(Base):
 
 
 class User(Base):
+    """Модель пользователя библиотеки.
+
+    Attributes:
+        id (int): Уникальный идентификатор пользователя
+        name (str): Ник пользователя (уникальный, до 30 символов)
+        fullname (str | None): Полное имя пользователя (до 50 символов)
+        book_id (int): ID взятой книги (внешний ключ на books.id)
+        book (Book): Объект книги, взятой пользователем
+    """
+
     __tablename__ = 'users'
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
@@ -50,6 +81,11 @@ class User(Base):
     book: Mapped['Book'] = relationship(back_populates='users')
 
     def __repr__(self) -> str:
+        """Возвращает строковое представление объекта пользователя.
+
+        Returns:
+            str: Строка с полной информацией о пользователе
+        """
         return (
             f"User(id={self.id}, name='{self.name}', "
             f"fullname='{self.fullname}', book_id={self.book_id})"
@@ -57,17 +93,43 @@ class User(Base):
 
 
 def add_section(title: str) -> None:
+    """Выводит заголовок раздела с разделителем.
+
+    Args:
+        title (str): Название раздела
+
+    Returns:
+        None
+    """
     print()
     print(f'={title:=<50}')
 
 
 def save_results_to_file(results: list[str], filename: str) -> None:
+    """Сохраняет результаты запросов в файл.
+
+    Args:
+        results (list[str]): Список строк с результатами
+        filename (str): Путь к файлу для сохранения
+
+    Returns:
+        None
+    """
     with Path(filename).open('w', encoding='utf-8') as f:
         for line in results:
             f.write(line + '\n')
 
 
 def compare_results(file1: str, file2: str) -> None:
+    """Сравнивает содержимое двух файлов и выводит различия.
+
+    Args:
+        file1 (str): Путь к первому файлу (полученные результаты)
+        file2 (str): Путь к второму файлу (эталонные результаты)
+
+    Returns:
+        None
+    """
     with (
         Path(file1).open('r', encoding='utf-8') as f1,
         Path(file2).open('r', encoding='utf-8') as f2,
@@ -89,6 +151,18 @@ def compare_results(file1: str, file2: str) -> None:
 
 
 def main() -> None:
+    """Основная функция программы.
+
+    Выполняет следующие действия:
+    1. Создает базу данных bookstore.db
+    2. Добавляет книги и пользователей
+    3. Выполняет SELECT-запросы
+    4. Сохраняет результаты в файл
+    5. Сравнивает с эталонным файлом
+
+    Returns:
+        None
+    """
     db_path = Path(__file__).parent / 'bookstore.db'
     if db_path.exists():
         db_path.unlink()
