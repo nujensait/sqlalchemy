@@ -74,9 +74,13 @@ class User(Base):
     __tablename__ = 'users'
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    name: Mapped[str] = mapped_column(String(30), nullable=False, unique=True)
+    name: Mapped[str] = mapped_column(
+        String(30), nullable=False, unique=True
+    )
     fullname: Mapped[str | None] = mapped_column(String(50))
-    book_id: Mapped[int] = mapped_column(ForeignKey('books.id'), nullable=False)
+    book_id: Mapped[int] = mapped_column(
+        ForeignKey('books.id'), nullable=False
+    )
 
     book: Mapped['Book'] = relationship(back_populates='users')
 
@@ -143,7 +147,9 @@ def compare_results(file1: str, file2: str) -> None:
         print('\n✗ Результаты НЕ совпадают с эталоном!')
         lines1 = content1.splitlines()
         lines2 = content2.splitlines()
-        for i, (line1, line2) in enumerate(zip(lines1, lines2, strict=True), 1):
+        for i, (line1, line2) in enumerate(
+            zip(lines1, lines2, strict=True), 1
+        ):
             if line1 != line2:
                 print(f'Строка {i}:')
                 print(f'  Ожидается: {line2}')
@@ -317,7 +323,9 @@ def main() -> None:
         add_section('3.3. Доступные книги (available = 1)')
         books = session.query(Book).filter(Book.available == 1).all()
         results.append('')
-        results.append('==========3.3. Доступные книги (available = 1)==========')
+        results.append(
+            '==========3.3. Доступные книги (available = 1)=========='
+        )
         for book in books:
             print(book)
             results.append(str(book))
@@ -326,7 +334,9 @@ def main() -> None:
         add_section("3.4. Книги, авторы которых имеют букву 'э'")
         books = session.query(Book).filter(Book.author.contains('э')).all()
         results.append('')
-        results.append("==========3.4. Книги, авторы которых имеют букву 'э'==========")
+        results.append(
+            "==========3.4. Книги, авторы которых имеют букву 'э'=========="
+        )
         for book in books:
             print(book)
             results.append(str(book))
