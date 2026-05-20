@@ -1,5 +1,9 @@
+# system files
 .venv
 .idea
 *.db
 uv.lock
 doc
+
+# temp files
+*/result.txt
