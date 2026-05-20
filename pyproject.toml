@@ -5,6 +5,7 @@ description = "Add your description here"
 requires-python = ">=3.14"
 dependencies = [
     "pylint>=4.0.5",
+    "sqlalchemy>=2.0.0",
 ]
 
 [dependency-groups]

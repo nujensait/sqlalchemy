@@ -19,7 +19,7 @@
 - ``30.04`` Устройство SQLAlchemy, работа с таблицами
 - ``04.05`` Запросы в SQLAlchemy
 - ``07.05`` Введение в ORM
-- ``14.05`` Работа с объектами в ORM
+- ``14.05`` [Работа с объектами в ORM](hw5/README.md)
 - ``18.05`` Оптимизация запросов
 - ``21.05`` Миграции, PyDantic, ИИ
 - ``25.05`` Итоговое занятие
@@ -59,6 +59,9 @@ make clean
 
 # Запустить домашнее задание 1
 make hw1
+
+# Запустить домашнее задание 5
+make hw5
 ```
 
 **Примеры использования:**
@@ -68,11 +71,13 @@ make hw1
 wsl make install
 wsl make lint-fix
 wsl make hw1
+wsl make hw5
 
 # В консоли Linux/MacOS: 
 make install
 make lint-fix
 make hw1
+make hw5
 ```
 
 -------------

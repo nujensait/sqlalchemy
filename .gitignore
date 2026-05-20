@@ -3,3 +3,8 @@
 *.db
 uv.lock
 doc
+
+# temp files
+*/result.txt
+*/my_result.txt
+*.db
