@@ -23,6 +23,7 @@
 - ``18.05`` Оптимизация запросов
 - ``21.05`` Миграции, PyDantic, ИИ
 - ``25.05`` Итоговое занятие
+- ``26.05`` [Итоговый проект](project/README.md)
 
 -------------
 
@@ -68,11 +69,12 @@ make hw1
 wsl make install
 wsl make lint-fix
 wsl make hw1
+wsl make prj
 
 # В консоли Linux/MacOS: 
 make install
 make lint-fix
-make hw1
+make prj
 ```
 
 -------------
