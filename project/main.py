@@ -1,5 +1,7 @@
 """Главный файл для демонстрации работы системы управления курсами."""
 
+import os
+import shutil
 from datetime import date
 from pathlib import Path
 
@@ -44,7 +46,16 @@ def print_section(title: str) -> None:
 
 def main() -> None:
     """Основная функция для демонстрации работы системы."""
-    engine = create_engine('sqlite:///:memory:', echo=False)
+    if os.name == 'posix':
+        db_path = Path('/tmp/courses.db')
+    else:
+        db_path = Path('project/courses.db')
+    
+    if db_path.exists():
+        db_path.unlink()
+    
+    engine = create_engine(f'sqlite:///{db_path}', echo=False)
+    print(f'📁 База данных: {db_path}\n')
     Base.metadata.create_all(engine)
 
     Session = sessionmaker(bind=engine)
@@ -232,6 +243,12 @@ def main() -> None:
     print('\n' + '=' * 60)
     print('✅ ВСЕ ЗАПРОСЫ ВЫПОЛНЕНЫ УСПЕШНО')
     print('=' * 60)
+    
+    if os.name == 'posix' and db_path == Path('/tmp/courses.db'):
+        project_db = Path('project/courses.db')
+        project_db.parent.mkdir(exist_ok=True)
+        shutil.copy2(db_path, project_db)
+        print(f'\n📋 База данных скопирована: {project_db}')
 
 
 if __name__ == '__main__':
