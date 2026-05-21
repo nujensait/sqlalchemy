@@ -44,11 +44,7 @@ def print_section(title: str) -> None:
 
 def main() -> None:
     """Основная функция для демонстрации работы системы."""
-    db_path = Path(__file__).parent / 'courses.db'
-    if db_path.exists():
-        db_path.unlink()
-
-    engine = create_engine(f'sqlite:///{db_path}', echo=False)
+    engine = create_engine('sqlite:///:memory:', echo=False)
     Base.metadata.create_all(engine)
 
     Session = sessionmaker(bind=engine)
