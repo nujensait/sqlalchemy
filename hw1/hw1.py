@@ -207,7 +207,7 @@ def task_4_where_filters(db_path):
     print()
     print('--- Книги Льва Толстого ---')
     cursor.execute(
-        "SELECT title, year, pages, available FROM books "
+        'SELECT title, year, pages, available FROM books '
         "WHERE author = 'Лев Толстой'"
     )
     for row in cursor.fetchall():
@@ -231,7 +231,7 @@ def task_4_where_filters(db_path):
     print()
     print('--- Романы с количеством страниц > 400 ---')
     cursor.execute(
-        "SELECT title, author, pages FROM books "
+        'SELECT title, author, pages FROM books '
         "WHERE genre = 'Роман' AND pages > 400"
     )
     for row in cursor.fetchall():
@@ -240,10 +240,10 @@ def task_4_where_filters(db_path):
     print()
     print('--- Книги Булгакова или Достоевского ---')
     cursor.execute(
-        "SELECT author, title, year FROM books "
+        'SELECT author, title, year FROM books '
         "WHERE author = 'Михаил Булгаков' "
         "OR author = 'Федор Достоевский' "
-        "ORDER BY author, year"
+        'ORDER BY author, year'
     )
     for row in cursor.fetchall():
         print(f'{row[0]}: «{row[1]}» ({row[2]})')

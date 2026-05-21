@@ -3,3 +3,8 @@
 *.db
 uv.lock
 doc
+hw6
+
+# results
+my_result.txt
+result.txt

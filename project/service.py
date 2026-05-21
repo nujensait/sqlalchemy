@@ -1,6 +1,6 @@
 """Сервисный слой для бизнес-логики системы управления курсами."""
 
-from datetime import date, datetime
+from datetime import date
 
 from project.models import Course, Enrollment, Student, Teacher
 from project.unit_of_work import UnitOfWork
@@ -97,9 +97,7 @@ class CourseManagementService:
         )
         return self.uow.courses.add(course)
 
-    def enroll_student(
-        self, student_id: int, course_id: int
-    ) -> Enrollment:
+    def enroll_student(self, student_id: int, course_id: int) -> Enrollment:
         """Записывает студента на курс.
 
         Args:

@@ -70,9 +70,7 @@ class Teacher(Base):
     hire_date: Mapped[date | None] = mapped_column()
     phone: Mapped[str | None] = mapped_column(String(15), unique=True)
 
-    courses: Mapped[list['Course']] = relationship(
-        back_populates='teacher'
-    )
+    courses: Mapped[list['Course']] = relationship(back_populates='teacher')
 
     def __repr__(self) -> str:
         """Возвращает строковое представление преподавателя.
@@ -126,7 +124,7 @@ class Course(Base):
         """
         return (
             f"Course(id={self.id}, title='{self.title}', "
-            f"credits={self.credits}, price={self.price})"
+            f'credits={self.credits}, price={self.price})'
         )
 
 
@@ -155,9 +153,7 @@ class Enrollment(Base):
         default=datetime.now, nullable=False
     )
     grade: Mapped[float | None] = mapped_column()
-    is_completed: Mapped[bool] = mapped_column(
-        default=False, nullable=False
-    )
+    is_completed: Mapped[bool] = mapped_column(default=False, nullable=False)
 
     student: Mapped['Student'] = relationship(back_populates='enrollments')
     course: Mapped['Course'] = relationship(back_populates='enrollments')

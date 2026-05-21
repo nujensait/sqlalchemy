@@ -50,10 +50,10 @@ def main() -> None:
         db_path = Path('/tmp/courses.db')
     else:
         db_path = Path('project/courses.db')
-    
+
     if db_path.exists():
         db_path.unlink()
-    
+
     engine = create_engine(f'sqlite:///{db_path}', echo=False)
     print(f'📁 База данных: {db_path}\n')
     Base.metadata.create_all(engine)
@@ -79,7 +79,7 @@ def main() -> None:
             phone='+1-555-0102',
         )
         uow.commit()
-        print(f'   ✅ Добавлено преподавателей: 2')
+        print('   ✅ Добавлено преподавателей: 2')
 
         print('\n➕ Добавление курсов...')
         course1 = service.create_course(
@@ -107,7 +107,7 @@ def main() -> None:
             teacher_id=teacher2.id,
         )
         uow.commit()
-        print(f'   ✅ Добавлено курсов: 3')
+        print('   ✅ Добавлено курсов: 3')
 
         print('\n➕ Добавление студентов...')
         student1 = service.create_student(
@@ -120,7 +120,7 @@ def main() -> None:
             email='bob@example.com', full_name='Bob Brown', is_active=False
         )
         uow.commit()
-        print(f'   ✅ Добавлено студентов: 3')
+        print('   ✅ Добавлено студентов: 3')
 
         print('\n➕ Запись студентов на курсы...')
         service.enroll_student(student1.id, course1.id)
@@ -129,7 +129,7 @@ def main() -> None:
         service.enroll_student(student2.id, course3.id)
         service.enroll_student(student3.id, course2.id)
         uow.commit()
-        print(f'   ✅ Создано записей: 5')
+        print('   ✅ Создано записей: 5')
 
         print_section('2. ОБНОВЛЕНИЕ ДАННЫХ (UPDATE)')
 
@@ -224,10 +224,7 @@ def main() -> None:
             f'после: {enrollments_after}'
         )
 
-        print(
-            '\n🗑️  Удаление преподавателя '
-            '(в курсах teacher_id = NULL)...'
-        )
+        print('\n🗑️  Удаление преподавателя (в курсах teacher_id = NULL)...')
         teacher_to_delete = teacher2.full_name
         service.delete_teacher(teacher2.id)
         uow.commit()
@@ -243,7 +240,7 @@ def main() -> None:
     print('\n' + '=' * 60)
     print('✅ ВСЕ ЗАПРОСЫ ВЫПОЛНЕНЫ УСПЕШНО')
     print('=' * 60)
-    
+
     if os.name == 'posix' and db_path == Path('/tmp/courses.db'):
         project_db = Path('project/courses.db')
         project_db.parent.mkdir(exist_ok=True)

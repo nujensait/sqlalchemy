@@ -3,7 +3,7 @@
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session, joinedload
 
-from project.models import Course, Enrollment, Student
+from project.models import Course, Enrollment
 from project.repositories.base_repository import BaseRepository
 
 
