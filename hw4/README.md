@@ -182,6 +182,165 @@ uv run ruff check --fix
 Составьте свой файлик с ответом `my_result.txt` и запишите в него свои результаты с помощью функции `save_results_to_file`.  
 Сравните содержимое файликов с помощью вызова функции `compare_results`.
 
+```
+"""
+
+import os
+
+from sqlalchemy.orm import DeclarativeBase, sessionmaker
+
+results = []
+
+
+class ResultHandler:
+    @staticmethod
+    def add_section(title):
+        results.append('\n' + '=' * 10 + title + '=' * 10)
+
+    @staticmethod
+    def save_results_to_file(filename='my_result.txt'):
+        with open(filename, 'w', encoding='utf-8') as f:
+            for line in results:
+                f.write(line + '\n')
+
+    @staticmethod
+    def compare_results(my_file='my_result.txt', expected_file='result.txt'):
+        print('\n' + '=' * 60)
+        print('🔍 СРАВНЕНИЕ РЕЗУЛЬТАТОВ С ЭТАЛОНОМ')
+        print('=' * 60)
+
+        if not os.path.exists(expected_file):
+            print(f'⚠️  Эталонный файл {expected_file} не найден.')
+            print('   Создайте его вручную или скопируйте от преподавателя.')
+            print('   Пропускаю сравнение...')
+            return False
+
+        if not os.path.exists(my_file):
+            print(f'❌ Файл с моими результатами {my_file} не найден!')
+            return False
+
+        with open(my_file, 'r', encoding='utf-8') as f:
+            my_lines = [line.rstrip() for line in f.readlines()]
+
+        with open(expected_file, 'r', encoding='utf-8') as f:
+            expected_lines = [line.rstrip() for line in f.readlines()]
+
+        assert len(my_lines) == len(expected_lines), (
+            f'Разное количество строк: моих {len(my_lines)}, эталон '
+            f'{len(expected_lines)}'
+        )
+
+        differences = []
+        for i, (my_line, expected_line) in enumerate(
+            zip(my_lines, expected_lines)  # noqa
+        ):
+            if my_line != expected_line:
+                differences.append(
+                    f'Строка {i + 1}:\n  '
+                    f'Моя:     {my_line}\n  Эталон:  {expected_line}'
+                )
+
+        if differences:
+            print('❌ НАЙДЕНЫ РАЗЛИЧИЯ:')
+            for diff in differences:
+                print(diff)
+
+            assert False, f'Найдено {len(differences)} различий с эталоном'  # noqa
+        else:
+            print('✅ ВСЕ ПРОВЕРКИ ПРОЙДЕНЫ!')
+            return True
+
+
+class Base(DeclarativeBase):
+    pass
+
+
+class Book(Base):
+    pass
+
+
+class User(Base):
+    pass
+
+
+class LibraryORM:
+    def __init__(self, db_url='sqlite:///bookstore.db', echo=True):
+        self.engine = ...  # TODO: создание движка
+        self.Session = sessionmaker(bind=self.engine)
+
+    def create_tables(self):
+        # TODO: здесь должно быть удаление таблиц и их создание через metadata
+        pass
+
+    def insert_books(self):
+        pass
+
+        with ...:
+            pass
+
+            ResultHandler.add_section('2.1. Добавление книг')
+            results.append(f'Добавлено книг: {...}')
+
+    def insert_users(self):
+        pass
+
+        with ...:
+            pass
+
+            ResultHandler.add_section('2.2. Добавление пользователей')
+            results.append(f'Добавлено пользователей: {...}')
+
+    def execute_queries(self):
+        with ...:
+            ResultHandler.add_section('3.1. Все книги (все поля)')
+            pass
+
+            ResultHandler.add_section('3.2. Все пользователи (все поля)')
+            pass
+
+            ResultHandler.add_section('3.3. Доступные книги (available = 1)')
+            pass
+
+            ResultHandler.add_section(
+                "3.4. Книги, авторы которых имеют букву 'э'"
+            )
+            pass
+
+            ResultHandler.add_section(
+                '3.5. Доступные книги, год которых меньше 1900'
+            )
+            pass
+
+            ResultHandler.add_section('3.6. Ник и ФИО пользователей')
+            pass
+
+            ResultHandler.add_section('3.7. Пользователи и их книги')
+            pass
+
+    def run_all(self):
+        self.create_tables()
+
+        self.insert_books()
+        self.insert_users()
+
+        self.execute_queries()
+
+        print(*results, sep='\n')
+
+        ResultHandler.save_results_to_file()
+
+        ResultHandler.compare_results()
+
+
+def main():
+    library = LibraryORM()
+    library.run_all()
+
+
+if __name__ == '__main__':
+    main()
+```
+
 ---
 
 ## Ожидаемый результат
