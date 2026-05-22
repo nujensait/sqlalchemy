@@ -2,8 +2,13 @@
 
 from datetime import date
 
-from project.models import Course, Enrollment, Student, Teacher
-from project.unit_of_work import UnitOfWork
+from project.infrastructure.database import (
+    Course,
+    Enrollment,
+    Student,
+    Teacher,
+)
+from project.infrastructure.unit_of_work import UnitOfWork
 
 
 class CourseManagementService:

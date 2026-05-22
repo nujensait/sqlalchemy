@@ -9,9 +9,9 @@ from sqlalchemy import create_engine, event
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import sessionmaker
 
-from project.models import Base
+from project.infrastructure.database import Base
+from project.infrastructure.unit_of_work import UnitOfWork
 from project.service import CourseManagementService
-from project.unit_of_work import UnitOfWork
 
 
 @event.listens_for(Engine, 'before_cursor_execute')
@@ -49,7 +49,9 @@ def main() -> None:
     if os.name == 'posix':
         db_path = Path('/tmp/courses.db')
     else:
-        db_path = Path('project/courses.db')
+        db_dir = Path('project')
+        db_dir.mkdir(exist_ok=True)
+        db_path = db_dir / 'courses.db'
 
     if db_path.exists():
         db_path.unlink()
