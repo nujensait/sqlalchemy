@@ -4,7 +4,21 @@
 uv.lock
 doc
 
+# cache
+*/__pycache__/
+__pycache__/
+
+
 # temp files
 */result.txt
 */my_result.txt
 *.db
+
+# other HW
+hw1
+hw2
+hw3
+hw4
+#hw5
+hw6
+project

@@ -45,14 +45,14 @@ class Book(Base):
     __tablename__ = 'books'
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    title: Mapped[str] = mapped_column(String, nullable=False)
-    author: Mapped[str] = mapped_column(String, nullable=False)
+    title: Mapped[str] = mapped_column(String)
+    author: Mapped[str] = mapped_column(String)
     year: Mapped[int | None] = mapped_column()
     isbn: Mapped[str | None] = mapped_column(String, unique=True)
     pages: Mapped[int] = mapped_column(default=0)
     genre: Mapped[str | None] = mapped_column(String)
     count: Mapped[int] = mapped_column(default=1)
-    price: Mapped[float] = mapped_column(nullable=False, default=0)
+    price: Mapped[float] = mapped_column(default=0)
 
     users: Mapped[list['UserBookAssociation']] = relationship(
         back_populates='book', cascade='all, delete-orphan'
@@ -108,9 +108,7 @@ class User(Base):
     __tablename__ = 'users'
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    name: Mapped[str] = mapped_column(
-        String(30), nullable=False, unique=True
-    )
+    name: Mapped[str] = mapped_column(String(30), unique=True)
     fullname: Mapped[str | None] = mapped_column(String(50))
 
     books: Mapped[list['UserBookAssociation']] = relationship(
