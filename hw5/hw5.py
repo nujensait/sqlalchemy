@@ -707,9 +707,9 @@ class BookStore:
 
         print(*results, sep='\n')
 
-        ResultHandler.save_results_to_file()
+        ResultHandler.save_results_to_file('hw5/my_result.txt')
 
-        ResultHandler.compare_results()
+        ResultHandler.compare_results('hw5/my_result.txt', 'hw5/result.txt')
 
 
 def main() -> None:
