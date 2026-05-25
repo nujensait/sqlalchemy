@@ -272,33 +272,364 @@
 
 ---
 
-### 3. Запросы
+3.Запросы:
+- Найдите топ-3 самые популярные книги. Используйте limit(3), чтобы ограничить
+  выборку.
 
-1. **Топ-3 самые популярные книги** (по количеству покупок). Используйте `limit(3)`.
+- Выведите информацию в из таблиц в следующем виде:
+  <Полное имя пользователя> (<Имя пользователя>):
+      Купленные книги:
+          <Название книги> - <Автор> (<Жанр>); <Цена> руб.
+      Итого: <Общая сумма, потраченная пользователем на книги> руб.
 
-2. **Информация о покупках пользователей** в формате:
-   ```
-   <Полное имя> (<Ник>):
-       Купленные книги:
-           <Название> - <Автор> (<Жанр>); <Цена> руб.
-       Итого: <Сумма> руб.
-   ```
+  Пример:
+  Alice Wonderland (alice):
+    Купленные книги:
+        Мастер и Маргарита - Михаил Булгаков (Роман); 890.0 руб.
+        Преступление и наказание - Федор Достоевский (Роман); 750.0 руб.
+    Итого: 1640.00 руб.
 
-3. **Пользователи, у которых отсутствует хотя бы одно из полей:** `email`, `address`, `phone`.
+- Выведите пользователей, у кого нет хотя бы одного из полей: email, address,
+  phone.
 
-4. **Увеличение цены всех книг на 5%**. Используйте `returning()`. Вывод:
-   `<Название>: <Старая цена> -> <Новая цена> (<Разница>) руб.`
+- Увеличьте цену всех книг на 5%. Верните через returning() названия книг и их
+  новую цену. Выведите в формате
+  <Название книги>: <Старая цена> -> <Новая цена> (<Разница>) руб.
 
-5. **Отчёт по магазину** (книги, активные читатели, самый популярный автор).
+- Сформируйте отчёт по магазину в формате:
+```
+1. Книги:
+   - "1984": 2 шт. x 682.5 руб. = 1365.00 руб.
+   - "Анна Каренина": 0 шт. x 997.5 руб. = 0.00 руб. (нет в наличии)
+   - "Война и мир. Том 1": 1 шт. x 1260.0 руб. = 1260.00 руб.
+   - "Маленький принц": 7 шт. x 472.5 руб. = 3307.50 руб.
+   - "Мастер и Маргарита": 5 шт. x 934.5 руб. = 4672.50 руб.
+   - "Портрет Дориана Грея": 0 шт. x 546.0 руб. = 0.00 руб. (нет в наличии)
+   - "Преступление и наказание": 3 шт. x 787.5 руб. = 2362.50 руб.
+   - "Собачье сердце": 4 шт. x 619.5 руб. = 2478.00 руб.
+   - "Три товарища": 2 шт. x 724.5 руб. = 1449.00 руб.
+   - "Убить пересмешника": 0 шт. x 577.5 руб. = 0.00 руб. (нет в наличии)
 
-6. **Удаление пользователей без адреса** (адрес `None`). После удаления вывести:
-   - удалённых пользователей,
-   - таблицу `delivery`,
-   - таблицу `user_book_association`.
+2. Активные читатели:
+   - alice: 2 книга(и) (Мастер и Маргарита, Преступление и наказание)
+   - bob: 1 книга(и) (Преступление и наказание)
+   - charlie: 3 книга(и) (Мастер и Маргарита, 1984, Портрет Дориана Грея)
+   - diana: 1 книга(и) (Мастер и Маргарита)
 
-7. **Удаление книги по ISBN** (`978-5-17-135043-1`). После удаления вывести:
-   - пользователей, у которых была эта книга,
-   - таблицу `user_book_association`.
+3. Самый популярный автор:
+   - Михаил Булгаков (3 книга(и), 3 читатель(ей))
+```
+
+- Удалите пользователей без адреса. После удаления выведите удалённых
+  пользователей, таблицу delivery, а также таблицу user_book_association.
+
+- Удалите книгу с isbn=978-5-17-135043-1. После удаления выведите
+  пользователей, которых затронуло удаление книги и таблицу
+  user_book_association.
+
+В качестве проверки используйте файл с выводом результатов запросов
+(result.txt).
+Формат вывода результата запросов можно посмотреть в этом же файле.
+
+(*) Для очищения таблиц при тестировании используйте следующий код:
+Base.metadata.drop_all(engine)
+
+Составьте свой файлик с ответом 'my_result.txt' и запишите в него свои
+результаты с помощью функции save_results_to_file.
+Сравните содержимое файликов с помощью вызова функции compare_results.
+
+---
+
+## Пример решения
+
+```
+"""
+
+import os
+
+from sqlalchemy import (
+    ForeignKey,
+    String,
+    create_engine,
+    desc,
+    func,
+    or_,
+    update, distinct,
+)
+from sqlalchemy.orm import (
+    DeclarativeBase,
+    Mapped,
+    mapped_column,
+    relationship,
+    sessionmaker,
+)
+
+AVAILABLE = 1
+NOT_AVAILABLE = 0
+
+results = []
+
+
+class ResultHandler:
+    @staticmethod
+    def add_section(title):
+        results.append('\n' + '=' * 10 + title + '=' * 10)
+
+    @staticmethod
+    def save_results_to_file(filename='my_result.txt'):
+        with open(filename, 'w', encoding='utf-8') as f:
+            for line in results:
+                f.write(line + '\n')
+
+    @staticmethod
+    def compare_results(my_file='my_result.txt', expected_file='result.txt'):
+        print('\n' + '=' * 60)
+        print('🔍 СРАВНЕНИЕ РЕЗУЛЬТАТОВ С ЭТАЛОНОМ')
+        print('=' * 60)
+
+        if not os.path.exists(expected_file):
+            print(f'⚠️  Эталонный файл {expected_file} не найден.')
+            print('   Создайте его вручную или скопируйте от преподавателя.')
+            print('   Пропускаю сравнение...')
+            return False
+
+        if not os.path.exists(my_file):
+            print(f'❌ Файл с моими результатами {my_file} не найден!')
+            return False
+
+        with open(my_file, 'r', encoding='utf-8') as f:
+            my_lines = [line.rstrip() for line in f.readlines()]
+
+        with open(expected_file, 'r', encoding='utf-8') as f:
+            expected_lines = [line.rstrip() for line in f.readlines()]
+
+        assert len(my_lines) == len(expected_lines), (
+            f'Разное количество строк: моих {len(my_lines)}, эталон '
+            f'{len(expected_lines)}'
+        )
+
+        differences = []
+        for i, (my_line, expected_line) in enumerate(
+            zip(my_lines, expected_lines)  # noqa
+        ):
+            if my_line != expected_line:
+                differences.append(
+                    f'Строка {i + 1}:\n  '
+                    f'Моя:     {my_line}\n  Эталон:  {expected_line}'
+                )
+
+        if differences:
+            print('❌ НАЙДЕНЫ РАЗЛИЧИЯ:')
+            for diff in differences:
+                print(diff)
+
+            assert False, f'Найдено {len(differences)} различий с эталоном'  # noqa
+        else:
+            print('✅ ВСЕ ПРОВЕРКИ ПРОЙДЕНЫ!')
+            return True
+
+
+class Base(DeclarativeBase):
+    pass
+
+
+class Book(Base):
+    pass
+
+    def __repr__(self):
+        return (
+            f'Book(id={self.id}, '
+            f"title='{self.title}', "
+            f"author='{self.author}', "
+            f"year='{self.year}', "
+            f"isbn='{self.isbn}', "
+            f"pages='{self.pages}', "
+            f"genre='{self.genre}', "
+            f"count='{self.count}', "
+            f"price='{self.price}')"
+        )
+
+
+class User(Base):
+    pass
+
+    def __repr__(self):
+        return (
+            f'User(id={self.id}, '
+            f"name='{self.name}', "
+            f"fullname='{self.fullname}')"
+        )
+
+
+class UserBookAssociation(Base):
+    pass
+
+    def __repr__(self):
+        return (
+            f'UserBookAssociation(user_id={self.user_id}, '
+            f'book_id={self.book_id})'
+        )
+
+
+class Delivery(Base):
+    pass
+
+    def __repr__(self):
+        return (
+            f'Delivery(id={self.id}, '
+            f'user_id={self.user_id}, '
+            f"email='{self.email}', "
+            f"address='{self.address}', "
+            f"phone='{self.phone}')"
+        )
+
+class BookStore:
+    def __init__(self, db_url='sqlite:///bookstore.db', echo=True):
+        self.engine = create_engine(db_url, echo=echo)
+        self.Session = sessionmaker(bind=self.engine)
+
+    def create_tables(self):
+        Base.metadata.drop_all(self.engine)
+        Base.metadata.create_all(self.engine)
+
+    def insert_books(self):
+        pass
+
+        with self.Session() as session:
+            pass
+
+            ResultHandler.add_section('2.1. Добавление книг')
+            results.append(f'Добавлено книг: {...}')
+
+    def insert_users(self):
+        pass
+
+        with ...:
+            pass
+
+            ResultHandler.add_section('2.2. Добавление пользователей')
+            results.append(f'Добавлено пользователей: {...}')
+
+    def insert_delivery(self):
+        pass
+
+        with ...:
+            pass
+
+            ResultHandler.add_section('2.3. Добавление данных доставки')
+            results.append(f'Добавлено данных доставки: {...}')
+
+    def insert_user_book_association(self):
+        pass
+
+        with ...:
+            pass
+
+            ResultHandler.add_section(
+                '2.4. Добавление данных ассоциации пользователя и книги'
+            )
+            results.append(f'Добавлено ассоциаций: {...}')
+
+    def get_top_books(self):
+        with ...:
+            ResultHandler.add_section('3.1. Топ-3 самые популярные книги')        
+            pass
+
+    def get_user_purchases_report(self):
+        with ...:
+            ResultHandler.add_section(
+                '3.2. Информация о покупках пользователей'
+            )
+            pass
+
+    def get_users_with_missing_delivery_data(self):
+        with self.Session() as session:
+            ResultHandler.add_section(
+                '3.3. Пользователи с отсутствующими данными доставки'
+            )
+            pass
+
+    def increase_prices_by_percent(self):
+        with ...:
+            ResultHandler.add_section('3.4. Увеличение цены на 5%')
+            pass
+
+    def generate_store_report(self):
+        with ...:
+            ResultHandler.add_section('3.5. Отчет по магазину')
+
+            # ========== 1. Книги ==========
+            results.append('\n1. Книги:')
+            pass
+
+            # ========== 2. Активные читатели ==========
+            results.append('\n2. Активные читатели:')
+            pass
+
+            # ========== 3. Самый популярный автор ==========
+            results.append('\n3. Самый популярный автор:')
+            pass
+
+    def delete_users_without_address(self):
+        with ...:
+            ResultHandler.add_section('3.6. Удаление пользователей без адреса')
+            pass
+            
+            results.append('Удалены пользователи: ')
+            pass
+
+            results.append('\nОставшиеся записи в таблице delivery:')
+            pass
+
+            results.append(
+                '\nОставшиеся записи в таблице user_book_association:'
+            )
+            pass
+
+    def delete_book_by_isbn(self, isbn='978-5-17-135043-1'):
+        with ...:
+            ResultHandler.add_section('3.7. Удаление книги по ISBN')
+            pass
+
+            results.append('\nПользователи, у которых была эта книга:')
+            pass
+
+            results.append(
+                '\nОставшиеся записи в таблице user_book_association:'
+            )
+            pass
+
+    def run_all(self):
+        self.create_tables()
+
+        self.insert_books()
+        self.insert_users()
+        self.insert_delivery()
+        self.insert_user_book_association()
+
+        self.get_top_books()
+        self.get_user_purchases_report()
+        self.get_users_with_missing_delivery_data()
+        self.increase_prices_by_percent()
+        self.generate_store_report()
+        self.delete_users_without_address()
+        self.delete_book_by_isbn()
+
+        print(*results, sep='\n')
+
+        ResultHandler.save_results_to_file()
+
+        ResultHandler.compare_results()
+
+
+def main():
+    bookstore = BookStore()
+    bookstore.run_all()
+
+
+if __name__ == '__main__':
+    main()
+```
 
 ---
 
