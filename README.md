@@ -18,7 +18,7 @@
 - ``27.04`` [Введение в базы данных и SQLAlchemy](hw1/README.md)
 - ``30.04`` [Устройство SQLAlchemy, работа с таблицами](hw2/README.md)
 - ``04.05`` Запросы в SQLAlchemy
-- ``07.05`` Введение в ORM
+- ``07.05`` [Введение в ORM](hw4/README.md)
 - ``14.05`` Работа с объектами в ORM
 - ``18.05`` Оптимизация запросов
 - ``21.05`` Миграции, PyDantic, ИИ
@@ -65,6 +65,9 @@ make hw2
 
 # Запустить домашнее задание 3
 make hw3
+
+# Запустить домашнее задание 4
+make hw4
 ```
 
 **Примеры использования:**
@@ -76,13 +79,15 @@ wsl make lint-fix
 wsl make hw1
 wsl make hw2
 wsl make hw3
+wsl make hw4
 
 # В консоли Linux/MacOS: 
 make install
 make lint-fix
 make hw1
-make hw3
 make hw2
+make hw3
+make hw4
 ```
 
 -------------

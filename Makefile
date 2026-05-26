@@ -1,4 +1,4 @@
-.PHONY: help lint lint-fix format check test clean install hw1 hw2 hw3
+.PHONY: help lint lint-fix format check test clean install hw1 hw2 hw3 hw4
 
 help:
 	@echo "Доступные команды:"
@@ -13,6 +13,7 @@ help:
 	@echo "  make hw1        - запустить домашнее задание 1"
 	@echo "  make hw2        - запустить домашнее задание 2"
 	@echo "  make hw3        - запустить домашнее задание 3"
+	@echo "  make hw4        - запустить домашнее задание 4"
 
 install:
 	@echo "Установка зависимостей..."
@@ -59,3 +60,7 @@ hw2:
 hw3:
 	@echo "Запуск домашнего задания 3..."
 	cd hw3 && uv run python hw3.py
+
+hw4:
+	@echo "Запуск домашнего задания 4..."
+	uv run python hw4/hw4.py
