@@ -23,6 +23,7 @@
 - ``18.05`` Оптимизация запросов
 - ``21.05`` Миграции, PyDantic, ИИ
 - ``25.05`` Итоговое занятие
+- ``26.05`` [Итоговый проект](project/README.md)
 
 -------------
 
@@ -84,6 +85,7 @@ wsl make hw2
 wsl make hw3
 wsl make hw4
 wsl make hw5
+wsl make prj
 
 # В консоли Linux/MacOS: 
 make install
@@ -93,6 +95,7 @@ make hw2
 make hw3
 make hw4
 make hw5
+make prj
 ```
 
 -------------
