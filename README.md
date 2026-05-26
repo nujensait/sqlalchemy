@@ -62,6 +62,9 @@ make hw1
 
 # Запустить домашнее задание 2
 make hw2
+
+# Запустить домашнее задание 3
+make hw3
 ```
 
 **Примеры использования:**
@@ -72,11 +75,13 @@ wsl make install
 wsl make lint-fix
 wsl make hw1
 wsl make hw2
+wsl make hw3
 
 # В консоли Linux/MacOS: 
 make install
 make lint-fix
 make hw1
+make hw3
 make hw2
 ```
 
