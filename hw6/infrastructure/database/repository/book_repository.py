@@ -1,6 +1,3 @@
-from sqlalchemy import func, select
-from sqlalchemy.orm import Session, selectinload
-
 from lesson_6.infrastructure.database.models.book import Book
 from lesson_6.infrastructure.database.models.user_book_association import (
     UserBookAssociation,
@@ -8,6 +5,8 @@ from lesson_6.infrastructure.database.models.user_book_association import (
 from lesson_6.infrastructure.database.repository.base_repository import (
     BaseRepository,
 )
+from sqlalchemy import func, select
+from sqlalchemy.orm import Session, selectinload
 
 
 class BookRepository(BaseRepository[Book]):

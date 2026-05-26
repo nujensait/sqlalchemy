@@ -208,7 +208,8 @@ async def main():
     stats = await store.get_author_stats()
     for name, count, avg_price, total_stock in stats:
         print(
-            f'  {name}: {count} книг, ср.цена {avg_price:.0f} руб., всего {total_stock} шт.'
+            f'  {name}: {count} книг, ср.цена {avg_price:.0f} руб., '
+            f'всего {total_stock} шт.'
         )
 
     # 6. Обновление остатков

@@ -1,8 +1,7 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-
 from lesson_6.infrastructure.database.unit_of_work import UnitOfWork
 from lesson_6.service.user_service import UserService
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 # Настройка
 engine = create_engine('sqlite+pysqlite:///mydb.db', echo=False)
@@ -20,7 +19,7 @@ def main():
         print('=' * 60)
 
         top_books = user_service.get_top_books(3)
-        for i, (id, title, author, count) in enumerate(top_books, 1):
+        for i, (_id, title, author, count) in enumerate(top_books, 1):
             print(f'{i}. {title} - {author} (читают {count} пользователей)')
 
         print('\n' + '=' * 60)

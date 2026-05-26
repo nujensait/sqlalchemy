@@ -67,7 +67,7 @@ class UserService:
             raise ValueError(f'Книга {book_id} не найдена')
 
         # Создаем связь
-        association = self.uow.associations.get_or_create(user_id, book_id)
+        self.uow.associations.get_or_create(user_id, book_id)
         self.uow.commit()
 
     def remove_book_from_user(self, user_id: int, book_id: int) -> None:

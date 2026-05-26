@@ -1,12 +1,11 @@
-from sqlalchemy import Index, String
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-
 from lesson_6.infrastructure.database.base import Base
 from lesson_6.infrastructure.database.models.address import Address
 from lesson_6.infrastructure.database.models.profile import Profile
 from lesson_6.infrastructure.database.models.user_book_association import (
     UserBookAssociation,
 )
+from sqlalchemy import Index, String
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 
 class User(Base):

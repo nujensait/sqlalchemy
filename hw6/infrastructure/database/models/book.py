@@ -1,6 +1,12 @@
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from typing import TYPE_CHECKING
 
 from lesson_6.infrastructure.database.base import Base
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+if TYPE_CHECKING:
+    from lesson_6.infrastructure.database.models.user_book_association import (
+        UserBookAssociation,
+    )
 
 
 class Book(Base):

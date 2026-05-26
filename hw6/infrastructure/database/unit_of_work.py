@@ -1,5 +1,3 @@
-from sqlalchemy.orm import Session
-
 from lesson_6.infrastructure.database.repository.address_repository import (
     AddressRepository,
 )
@@ -15,6 +13,7 @@ from lesson_6.infrastructure.database.repository.user_book_association import (
 from lesson_6.infrastructure.database.repository.user_repository import (
     UserRepository,
 )
+from sqlalchemy.orm import Session
 
 
 class UnitOfWork:

@@ -1,10 +1,9 @@
-from sqlalchemy import select
-from sqlalchemy.orm import Session
-
 from lesson_6.infrastructure.database.models.address import Address
 from lesson_6.infrastructure.database.repository.base_repository import (
     BaseRepository,
 )
+from sqlalchemy import select
+from sqlalchemy.orm import Session
 
 
 class AddressRepository(BaseRepository[Address]):

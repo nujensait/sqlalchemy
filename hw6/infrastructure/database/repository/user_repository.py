@@ -1,7 +1,4 @@
-from typing import Any, Sequence, _T_co
-
-from sqlalchemy import func, select, Row
-from sqlalchemy.orm import Session, joinedload, load_only, selectinload
+from typing import Sequence, _T_co
 
 from lesson_6.infrastructure.database.models.book import Book
 from lesson_6.infrastructure.database.models.user import User
@@ -11,6 +8,8 @@ from lesson_6.infrastructure.database.models.user_book_association import (
 from lesson_6.infrastructure.database.repository.base_repository import (
     BaseRepository,
 )
+from sqlalchemy import func, select
+from sqlalchemy.orm import Session, joinedload, load_only, selectinload
 
 
 class UserRepository(BaseRepository[User]):

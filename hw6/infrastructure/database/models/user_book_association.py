@@ -1,7 +1,12 @@
+from typing import TYPE_CHECKING
+
+from lesson_6.infrastructure.database.base import Base
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from lesson_6.infrastructure.database.base import Base
+if TYPE_CHECKING:
+    from lesson_6.infrastructure.database.models.book import Book
+    from lesson_6.infrastructure.database.models.user import User
 
 
 class UserBookAssociation(Base):

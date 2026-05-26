@@ -9,7 +9,7 @@
 
 ## О проекте
 
-- Домашние задания по курсу ["SQLAlchemy"](https://greenatomcaselab.ispringlearn.ru/app/user-portal/learning-track/37358).
+- Домашние задания по курсу ["Python / SQLAlchemy 2.0"](https://greenatomcaselab.ispringlearn.ru/app/user-portal/learning-track/37358).
 
 -------------
 
@@ -17,7 +17,7 @@
 
 - ``27.04`` [Введение в базы данных и SQLAlchemy](hw1/README.md)
 - ``30.04`` [Устройство SQLAlchemy, работа с таблицами](hw2/README.md)
-- ``04.05`` Запросы в SQLAlchemy
+- ``04.05`` [Запросы в SQLAlchemy](hw3/README.md)
 - ``07.05`` [Введение в ORM](hw4/README.md)
 - ``14.05`` [Работа с объектами в ORM](hw5/README.md)
 - ``18.05`` Оптимизация запросов
@@ -72,32 +72,10 @@ make hw4
 
 # Запустить домашнее задание 5
 make hw5
-```
 
-**Примеры использования:**
-
-```bash
-# В WSL (Windows):
-wsl make install
-wsl make lint-fix
-wsl make hw1
-wsl make hw2
-wsl make hw3
-wsl make hw4
-wsl make hw5
-wsl make prj
-
-# В консоли Linux/MacOS: 
-make install
-make lint-fix
-make hw1
-make hw2
-make hw3
-make hw4
-make hw5
+# Запустить Итоговый проект
 make prj
 ```
-
 -------------
 
 ## Автор
