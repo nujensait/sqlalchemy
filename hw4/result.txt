@@ -1,0 +1,55 @@
+
+==========2.1. Добавление книг==========
+Добавлено книг: 10
+
+==========2.2. Добавление пользователей==========
+Добавлено пользователей: 5
+
+==========3.1. Все книги (все поля)==========
+Book(id=1, title='Мастер и Маргарита', author='Михаил Булгаков', year=1967, isbn='978-5-17-135043-1', pages=480, genre='Роман', available=1)
+Book(id=2, title='Преступление и наказание', author='Федор Достоевский', year=1866, isbn='978-5-04-116633-9', pages=672, genre='Роман', available=1)
+Book(id=3, title='1984', author='Джордж Оруэлл', year=1949, isbn='978-5-17-137262-4', pages=320, genre='Антиутопия', available=1)
+Book(id=4, title='Убить пересмешника', author='Харпер Ли', year=1960, isbn='978-5-04-116631-5', pages=416, genre='Роман', available=0)
+Book(id=5, title='Война и мир. Том 1', author='Лев Толстой', year=1867, isbn='978-5-17-135042-4', pages=720, genre='Роман-эпопея', available=1)
+Book(id=6, title='Анна Каренина', author='Лев Толстой', year=1877, isbn='978-5-04-116632-2', pages=864, genre='Роман', available=0)
+Book(id=7, title='Собачье сердце', author='Михаил Булгаков', year=1925, isbn='978-5-17-135044-8', pages=352, genre='Повесть', available=1)
+Book(id=8, title='Маленький принц', author='Антуан де Сент-Экзюпери', year=1943, isbn='978-5-04-116634-6', pages=96, genre='Сказка', available=1)
+Book(id=9, title='Три товарища', author='Эрих Мария Ремарк', year=1936, isbn='978-5-17-137263-1', pages=384, genre='Роман', available=1)
+Book(id=10, title='Портрет Дориана Грея', author='Оскар Уайльд', year=1890, isbn='978-5-04-116635-3', pages=320, genre='Роман', available=0)
+
+==========3.2. Все пользователи (все поля)==========
+User(id=1, name='alice', fullname='Alice Wonderland', book_id=1)
+User(id=2, name='bob', fullname='Bob Builder', book_id=3)
+User(id=3, name='charlie', fullname='Charlie Brown', book_id=2)
+User(id=4, name='diana', fullname='Diana Princess', book_id=7)
+User(id=5, name='eve', fullname='Eve Smith', book_id=5)
+
+==========3.3. Доступные книги (available = 1)==========
+Book(id=1, title='Мастер и Маргарита', author='Михаил Булгаков', year=1967, isbn='978-5-17-135043-1', pages=480, genre='Роман', available=1)
+Book(id=2, title='Преступление и наказание', author='Федор Достоевский', year=1866, isbn='978-5-04-116633-9', pages=672, genre='Роман', available=1)
+Book(id=3, title='1984', author='Джордж Оруэлл', year=1949, isbn='978-5-17-137262-4', pages=320, genre='Антиутопия', available=1)
+Book(id=5, title='Война и мир. Том 1', author='Лев Толстой', year=1867, isbn='978-5-17-135042-4', pages=720, genre='Роман-эпопея', available=1)
+Book(id=7, title='Собачье сердце', author='Михаил Булгаков', year=1925, isbn='978-5-17-135044-8', pages=352, genre='Повесть', available=1)
+Book(id=8, title='Маленький принц', author='Антуан де Сент-Экзюпери', year=1943, isbn='978-5-04-116634-6', pages=96, genre='Сказка', available=1)
+Book(id=9, title='Три товарища', author='Эрих Мария Ремарк', year=1936, isbn='978-5-17-137263-1', pages=384, genre='Роман', available=1)
+
+==========3.4. Книги, авторы которых имеют букву 'э'==========
+Book(id=3, title='1984', author='Джордж Оруэлл', year=1949, isbn='978-5-17-137262-4', pages=320, genre='Антиутопия', available=1)
+
+==========3.5. Доступные книги, год которых меньше 1900==========
+Book(id=2, title='Преступление и наказание', author='Федор Достоевский', year=1866, isbn='978-5-04-116633-9', pages=672, genre='Роман', available=1)
+Book(id=5, title='Война и мир. Том 1', author='Лев Толстой', year=1867, isbn='978-5-17-135042-4', pages=720, genre='Роман-эпопея', available=1)
+
+==========3.6. Ник и ФИО пользователей==========
+alice: Alice Wonderland
+bob: Bob Builder
+charlie: Charlie Brown
+diana: Diana Princess
+eve: Eve Smith
+
+==========3.7. Пользователи и их книги==========
+alice (Alice Wonderland): Мастер и Маргарита
+bob (Bob Builder): 1984
+charlie (Charlie Brown): Преступление и наказание
+diana (Diana Princess): Собачье сердце
+eve (Eve Smith): Война и мир. Том 1

@@ -72,9 +72,7 @@ def compare_results(my_file='my_result.txt', expected_file='result.txt'):
         for diff in differences:
             print(diff)
 
-        raise AssertionError(
-            f'Найдено {len(differences)} различий с эталоном'
-        )
+        raise AssertionError(f'Найдено {len(differences)} различий с эталоном')
     else:
         print('✅ ВСЕ ПРОВЕРКИ ПРОЙДЕНЫ!')
         return True
@@ -291,9 +289,7 @@ def run_queries(engine, books, users):
         add_section('3.5 Книги, которые никто не взял')
         result = conn.execute(
             select(books.c.title, books.c.author)
-            .select_from(
-                books.outerjoin(users, books.c.id == users.c.book_id)
-            )
+            .select_from(books.outerjoin(users, books.c.id == users.c.book_id))
             .where(users.c.id.is_(None))
         )
         for row in result:

@@ -190,16 +190,106 @@
 
 ```python
 [
-    {"title": "Мастер и Маргарита", "author": "Михаил Булгаков", "year": 1967, "isbn": "978-5-17-135043-1", "pages": 480, "genre": "Роман", "count": 5, "price": 890.0},
-    {"title": "Преступление и наказание", "author": "Федор Достоевский", "year": 1866, "isbn": "978-5-04-116633-9", "pages": 672, "genre": "Роман", "count": 3, "price": 750.0},
-    {"title": "1984", "author": "Джордж Оруэлл", "year": 1949, "isbn": "978-5-17-137262-4", "pages": 320, "genre": "Антиутопия", "count": 2, "price": 650.0},
-    {"title": "Убить пересмешника", "author": "Харпер Ли", "year": 1960, "isbn": "978-5-04-116631-5", "pages": 416, "genre": "Роман", "count": 0, "price": 550.0},
-    {"title": "Война и мир. Том 1", "author": "Лев Толстой", "year": 1867, "isbn": "978-5-17-135042-4", "pages": 720, "genre": "Роман-эпопея", "count": 1, "price": 1200.0},
-    {"title": "Анна Каренина", "author": "Лев Толстой", "year": 1877, "isbn": "978-5-04-116632-2", "pages": 864, "genre": "Роман", "count": 0, "price": 950.0},
-    {"title": "Собачье сердце", "author": "Михаил Булгаков", "year": 1925, "isbn": "978-5-17-135044-8", "pages": 352, "genre": "Повесть", "count": 4, "price": 590.0},
-    {"title": "Маленький принц", "author": "Антуан де Сент-Экзюпери", "year": 1943, "isbn": "978-5-04-116634-6", "pages": 96, "genre": "Сказка", "count": 7, "price": 450.0},
-    {"title": "Три товарища", "author": "Эрих Мария Ремарк", "year": 1936, "isbn": "978-5-17-137263-1", "pages": 384, "genre": "Роман", "count": 2, "price": 690.0},
-    {"title": "Портрет Дориана Грея", "author": "Оскар Уайльд", "year": 1890, "isbn": "978-5-04-116635-3", "pages": 320, "genre": "Роман", "count": 0, "price": 520.0}
+    {
+        'title': 'Мастер и Маргарита',
+        'author': 'Михаил Булгаков',
+        'year': 1967,
+        'isbn': '978-5-17-135043-1',
+        'pages': 480,
+        'genre': 'Роман',
+        'count': 5,
+        'price': 890.0,
+    },
+    {
+        'title': 'Преступление и наказание',
+        'author': 'Федор Достоевский',
+        'year': 1866,
+        'isbn': '978-5-04-116633-9',
+        'pages': 672,
+        'genre': 'Роман',
+        'count': 3,
+        'price': 750.0,
+    },
+    {
+        'title': '1984',
+        'author': 'Джордж Оруэлл',
+        'year': 1949,
+        'isbn': '978-5-17-137262-4',
+        'pages': 320,
+        'genre': 'Антиутопия',
+        'count': 2,
+        'price': 650.0,
+    },
+    {
+        'title': 'Убить пересмешника',
+        'author': 'Харпер Ли',
+        'year': 1960,
+        'isbn': '978-5-04-116631-5',
+        'pages': 416,
+        'genre': 'Роман',
+        'count': 0,
+        'price': 550.0,
+    },
+    {
+        'title': 'Война и мир. Том 1',
+        'author': 'Лев Толстой',
+        'year': 1867,
+        'isbn': '978-5-17-135042-4',
+        'pages': 720,
+        'genre': 'Роман-эпопея',
+        'count': 1,
+        'price': 1200.0,
+    },
+    {
+        'title': 'Анна Каренина',
+        'author': 'Лев Толстой',
+        'year': 1877,
+        'isbn': '978-5-04-116632-2',
+        'pages': 864,
+        'genre': 'Роман',
+        'count': 0,
+        'price': 950.0,
+    },
+    {
+        'title': 'Собачье сердце',
+        'author': 'Михаил Булгаков',
+        'year': 1925,
+        'isbn': '978-5-17-135044-8',
+        'pages': 352,
+        'genre': 'Повесть',
+        'count': 4,
+        'price': 590.0,
+    },
+    {
+        'title': 'Маленький принц',
+        'author': 'Антуан де Сент-Экзюпери',
+        'year': 1943,
+        'isbn': '978-5-04-116634-6',
+        'pages': 96,
+        'genre': 'Сказка',
+        'count': 7,
+        'price': 450.0,
+    },
+    {
+        'title': 'Три товарища',
+        'author': 'Эрих Мария Ремарк',
+        'year': 1936,
+        'isbn': '978-5-17-137263-1',
+        'pages': 384,
+        'genre': 'Роман',
+        'count': 2,
+        'price': 690.0,
+    },
+    {
+        'title': 'Портрет Дориана Грея',
+        'author': 'Оскар Уайльд',
+        'year': 1890,
+        'isbn': '978-5-04-116635-3',
+        'pages': 320,
+        'genre': 'Роман',
+        'count': 0,
+        'price': 520.0,
+    },
 ]
 ```
 
@@ -216,11 +306,11 @@
 
 ```python
 [
-    {"name": "alice", "fullname": "Alice Wonderland"},
-    {"name": "bob", "fullname": "Bob Builder"},
-    {"name": "charlie", "fullname": "Charlie Brown"},
-    {"name": "diana", "fullname": "Diana Princess"},
-    {"name": "eve", "fullname": "Eve Smith"},
+    {'name': 'alice', 'fullname': 'Alice Wonderland'},
+    {'name': 'bob', 'fullname': 'Bob Builder'},
+    {'name': 'charlie', 'fullname': 'Charlie Brown'},
+    {'name': 'diana', 'fullname': 'Diana Princess'},
+    {'name': 'eve', 'fullname': 'Eve Smith'},
 ]
 ```
 
@@ -236,11 +326,31 @@
 
 ```python
 [
-    {"user_id": 1, "email": "alice@example.com", "address": "Wonderland 1, London", "phone": "+79997776655"},
-    {"user_id": 2, "email": "bob@example.com", "address": "Builder St 123, London", "phone": "+44-20-7946-0002"},
-    {"user_id": 3, "email": None, "address": None, "phone": None},
-    {"user_id": 4, "email": "diana@example.com", "address": "Princess Palace, London", "phone": None},
-    {"user_id": 5, "email": None, "address": "Smith Lane 78, Dublin", "phone": "+353-1-234-5678"},
+    {
+        'user_id': 1,
+        'email': 'alice@example.com',
+        'address': 'Wonderland 1, London',
+        'phone': '+79997776655',
+    },
+    {
+        'user_id': 2,
+        'email': 'bob@example.com',
+        'address': 'Builder St 123, London',
+        'phone': '+44-20-7946-0002',
+    },
+    {'user_id': 3, 'email': None, 'address': None, 'phone': None},
+    {
+        'user_id': 4,
+        'email': 'diana@example.com',
+        'address': 'Princess Palace, London',
+        'phone': None,
+    },
+    {
+        'user_id': 5,
+        'email': None,
+        'address': 'Smith Lane 78, Dublin',
+        'phone': '+353-1-234-5678',
+    },
 ]
 ```
 
@@ -256,13 +366,13 @@
 
 ```python
 [
-    {"user_id": 1, "book_id": 1},
-    {"user_id": 2, "book_id": 2},
-    {"user_id": 3, "book_id": 3},
-    {"user_id": 4, "book_id": 1},
-    {"user_id": 1, "book_id": 2},
-    {"user_id": 3, "book_id": 1},
-    {"user_id": 3, "book_id": 10},
+    {'user_id': 1, 'book_id': 1},
+    {'user_id': 2, 'book_id': 2},
+    {'user_id': 3, 'book_id': 3},
+    {'user_id': 4, 'book_id': 1},
+    {'user_id': 1, 'book_id': 2},
+    {'user_id': 3, 'book_id': 1},
+    {'user_id': 3, 'book_id': 10},
 ]
 ```
 

@@ -5,6 +5,6 @@ uv.lock
 doc
 
 # temp HW files (results)
-*/result.txt
+#*/result.txt
 */my_result.txt
 *.db

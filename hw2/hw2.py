@@ -66,9 +66,7 @@ def compare_results(
         for diff in differences:
             print(diff)
 
-        raise AssertionError(
-            f'Найдено {len(differences)} различий с эталоном'
-        )
+        raise AssertionError(f'Найдено {len(differences)} различий с эталоном')
     else:
         print('✅ ВСЕ ПРОВЕРКИ ПРОЙДЕНЫ!')
         return True
@@ -204,9 +202,7 @@ def insert_books(engine, books):
         conn.execute(books.delete())
         conn.commit()
 
-        result = conn.execute(
-            books.insert().returning(books.c.id), books_data
-        )
+        result = conn.execute(books.insert().returning(books.c.id), books_data)
         book_ids = [row[0] for row in result]
         conn.commit()
 
@@ -247,16 +243,12 @@ def execute_queries(engine, books, users):
             results.append(str(tuple(row)))
 
         add_section('3.3. Доступные книги (available = 1)')
-        result = conn.execute(
-            select(books).where(books.c.available == 1)
-        )
+        result = conn.execute(select(books).where(books.c.available == 1))
         for row in result:
             results.append(str(tuple(row)))
 
         add_section("3.4. Авторы с буквой 'э'")
-        result = conn.execute(
-            select(books).where(books.c.author.like('%э%'))
-        )
+        result = conn.execute(select(books).where(books.c.author.like('%э%')))
         for row in result:
             results.append(str(tuple(row)))
 
@@ -281,9 +273,7 @@ def execute_queries(engine, books, users):
                 users.c.fullname,
                 books.c.title,
                 books.c.author,
-            ).select_from(
-                users.join(books, users.c.book_id == books.c.id)
-            )
+            ).select_from(users.join(books, users.c.book_id == books.c.id))
         )
         for row in result:
             results.append(f"{row[0]}: ({row[1]}) -> '{row[2]}' - {row[3]}")

@@ -120,16 +120,96 @@ uv run ruff check --fix
 
 ```python
 [
-    {"title": "Мастер и Маргарита", "author": "Михаил Булгаков", "year": 1967, "isbn": "978-5-17-135043-1", "pages": 480, "genre": "Роман", "available": 1},
-    {"title": "Преступление и наказание", "author": "Федор Достоевский", "year": 1866, "isbn": "978-5-04-116633-9", "pages": 672, "genre": "Роман", "available": 1},
-    {"title": "1984", "author": "Джордж Оруэлл", "year": 1949, "isbn": "978-5-17-137262-4", "pages": 320, "genre": "Антиутопия", "available": 1},
-    {"title": "Убить пересмешника", "author": "Харпер Ли", "year": 1960, "isbn": "978-5-04-116631-5", "pages": 416, "genre": "Роман", "available": 0},
-    {"title": "Война и мир. Том 1", "author": "Лев Толстой", "year": 1867, "isbn": "978-5-17-135042-4", "pages": 720, "genre": "Роман-эпопея", "available": 1},
-    {"title": "Анна Каренина", "author": "Лев Толстой", "year": 1877, "isbn": "978-5-04-116632-2", "pages": 864, "genre": "Роман", "available": 0},
-    {"title": "Собачье сердце", "author": "Михаил Булгаков", "year": 1925, "isbn": "978-5-17-135044-8", "pages": 352, "genre": "Повесть", "available": 1},
-    {"title": "Маленький принц", "author": "Антуан де Сент-Экзюпери", "year": 1943, "isbn": "978-5-04-116634-6", "pages": 96, "genre": "Сказка", "available": 1},
-    {"title": "Три товарища", "author": "Эрих Мария Ремарк", "year": 1936, "isbn": "978-5-17-137263-1", "pages": 384, "genre": "Роман", "available": 1},
-    {"title": "Портрет Дориана Грея", "author": "Оскар Уайльд", "year": 1890, "isbn": "978-5-04-116635-3", "pages": 320, "genre": "Роман", "available": 0}
+    {
+        'title': 'Мастер и Маргарита',
+        'author': 'Михаил Булгаков',
+        'year': 1967,
+        'isbn': '978-5-17-135043-1',
+        'pages': 480,
+        'genre': 'Роман',
+        'available': 1,
+    },
+    {
+        'title': 'Преступление и наказание',
+        'author': 'Федор Достоевский',
+        'year': 1866,
+        'isbn': '978-5-04-116633-9',
+        'pages': 672,
+        'genre': 'Роман',
+        'available': 1,
+    },
+    {
+        'title': '1984',
+        'author': 'Джордж Оруэлл',
+        'year': 1949,
+        'isbn': '978-5-17-137262-4',
+        'pages': 320,
+        'genre': 'Антиутопия',
+        'available': 1,
+    },
+    {
+        'title': 'Убить пересмешника',
+        'author': 'Харпер Ли',
+        'year': 1960,
+        'isbn': '978-5-04-116631-5',
+        'pages': 416,
+        'genre': 'Роман',
+        'available': 0,
+    },
+    {
+        'title': 'Война и мир. Том 1',
+        'author': 'Лев Толстой',
+        'year': 1867,
+        'isbn': '978-5-17-135042-4',
+        'pages': 720,
+        'genre': 'Роман-эпопея',
+        'available': 1,
+    },
+    {
+        'title': 'Анна Каренина',
+        'author': 'Лев Толстой',
+        'year': 1877,
+        'isbn': '978-5-04-116632-2',
+        'pages': 864,
+        'genre': 'Роман',
+        'available': 0,
+    },
+    {
+        'title': 'Собачье сердце',
+        'author': 'Михаил Булгаков',
+        'year': 1925,
+        'isbn': '978-5-17-135044-8',
+        'pages': 352,
+        'genre': 'Повесть',
+        'available': 1,
+    },
+    {
+        'title': 'Маленький принц',
+        'author': 'Антуан де Сент-Экзюпери',
+        'year': 1943,
+        'isbn': '978-5-04-116634-6',
+        'pages': 96,
+        'genre': 'Сказка',
+        'available': 1,
+    },
+    {
+        'title': 'Три товарища',
+        'author': 'Эрих Мария Ремарк',
+        'year': 1936,
+        'isbn': '978-5-17-137263-1',
+        'pages': 384,
+        'genre': 'Роман',
+        'available': 1,
+    },
+    {
+        'title': 'Портрет Дориана Грея',
+        'author': 'Оскар Уайльд',
+        'year': 1890,
+        'isbn': '978-5-04-116635-3',
+        'pages': 320,
+        'genre': 'Роман',
+        'available': 0,
+    },
 ]
 ```
 
@@ -148,11 +228,11 @@ uv run ruff check --fix
 
 ```python
 [
-    {"name": "alice", "fullname": "Alice Wonderland", "book_id": 1},
-    {"name": "bob", "fullname": "Bob Builder", "book_id": 3},
-    {"name": "charlie", "fullname": "Charlie Brown", "book_id": 2},
-    {"name": "diana", "fullname": "Diana Princess", "book_id": 7},
-    {"name": "eve", "fullname": "Eve Smith", "book_id": 5}
+    {'name': 'alice', 'fullname': 'Alice Wonderland', 'book_id': 1},
+    {'name': 'bob', 'fullname': 'Bob Builder', 'book_id': 3},
+    {'name': 'charlie', 'fullname': 'Charlie Brown', 'book_id': 2},
+    {'name': 'diana', 'fullname': 'Diana Princess', 'book_id': 7},
+    {'name': 'eve', 'fullname': 'Eve Smith', 'book_id': 5},
 ]
 ```
 

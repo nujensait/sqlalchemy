@@ -349,7 +349,8 @@ class LibraryORM:
                 '3.5. Доступные книги, год которых меньше 1900'
             )
             books = (
-                session.query(Book)
+                session
+                .query(Book)
                 .where(Book.available == 1, Book.year < 1900)
                 .all()
             )
